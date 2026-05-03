@@ -209,6 +209,42 @@ body {
   margin-top: 68px;
 }
 
+
+@media (max-width: 640px) {
+  body { padding: 0; }
+
+  .page {
+    padding: 32px 20px 48px;
+    box-shadow: none;
+  }
+  .page::before { inset: 8px; }
+
+  .header-botanical { height: 50px; margin-bottom: 0; }
+  .header-botanical-bottom { height: 36px; margin-top: 6px; }
+  .section-botanical { height: 34px; margin-bottom: 6px; }
+
+  .menu-title { font-size: 46px; }
+  .header-eyebrow { font-size: 13px; }
+  .header-tagline { font-size: 9px; letter-spacing: 0.16em; }
+
+  .section-header { margin: 40px 0 28px; }
+  .section-title { font-size: 34px; }
+
+  .drinks-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .page-break-spacer {
+    margin: 48px -20px 0;
+  }
+
+  .drink-svg-wrap { width: 90px; height: 124px; }
+  .coupe-wrap { width: 110px; height: 124px; }
+  .drink-name { font-size: 15px; }
+  .drink-ingredients { font-size: 12px; line-height: 1.85; }
+}
+
 @media print {
   body { background: none; padding: 0; }
   .page { box-shadow: none; padding: 50px 65px; }

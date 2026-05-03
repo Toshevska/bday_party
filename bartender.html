@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bartender Sheet</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: #2C2418;
+  font-family: 'Jost', sans-serif;
+  padding: 40px 24px;
+  color: #3A2A18;
+}
+
+.page {
+  max-width: 1050px;
+  margin: 0 auto;
+}
+
+/* ---- PAGE HEADER ---- */
+.page-header {
+  background: #9C4A28;
+  color: #FBF4E8;
+  padding: 28px 40px;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.page-header h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+.page-header p {
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  opacity: 0.75;
+  margin-top: 4px;
+}
+.page-header-right {
+  text-align: right;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.65;
+  line-height: 1.9;
+}
+
+/* ---- SECTION HEADER ---- */
+.section-header {
+  background: #6B4A30;
+  color: #F0E4D0;
+  padding: 10px 40px;
+  font-size: 10px;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-top: 18px;
+  margin-bottom: 4px;
+}
+
+/* ---- DRINK CARD ---- */
+.drink-card {
+  background: #FBF4E8;
+  display: grid;
+  grid-template-columns: 110px 1fr 1fr;
+  gap: 0;
+  margin-bottom: 4px;
+  border-left: 4px solid #9C4A28;
+  min-height: 160px;
+}
+
+.drink-card:nth-child(even) {
+  border-left-color: #7A8A5C;
+}
+
+/* Glass column */
+.col-glass {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 8px;
+  background: #F4EAD8;
+  border-right: 1px solid rgba(176,112,64,0.15);
+}
+.col-glass svg {
+  width: 72px;
+  height: 96px;
+}
+
+/* Ingredients column */
+.col-ingredients {
+  padding: 18px 22px;
+  border-right: 1px solid rgba(176,112,64,0.15);
+}
+
+.drink-name {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 16px;
+  color: #9C4A28;
+  margin-bottom: 5px;
+  line-height: 1.25;
+}
+
+.no-ice-badge {
+  display: inline-block;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #7A8A5C;
+  border: 1px solid #7A8A5C;
+  padding: 1px 6px;
+  border-radius: 20px;
+  margin-bottom: 8px;
+  font-family: 'Jost', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+}
+
+.ingredients-label {
+  font-size: 8.5px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #B07040;
+  opacity: 0.8;
+  margin-bottom: 7px;
+  font-weight: 600;
+}
+
+.ingredient-row {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+  margin-bottom: 3px;
+}
+.ingredient-measure {
+  font-size: 11px;
+  font-weight: 600;
+  color: #6B4A30;
+  min-width: 52px;
+  text-align: right;
+  flex-shrink: 0;
+  font-variant-numeric: tabular-nums;
+}
+.ingredient-name {
+  font-size: 11.5px;
+  font-weight: 300;
+  color: #3A2A18;
+  line-height: 1.5;
+}
+
+/* Steps column */
+.col-steps {
+  padding: 18px 22px;
+}
+
+.steps-label {
+  font-size: 8.5px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #B07040;
+  opacity: 0.8;
+  margin-bottom: 9px;
+  font-weight: 600;
+}
+
+.step {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 8px;
+  align-items: flex-start;
+}
+.step-num {
+  background: #9C4A28;
+  color: #FBF4E8;
+  font-size: 9px;
+  font-weight: 600;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+  letter-spacing: 0;
+}
+.drink-card:nth-child(even) .step-num {
+  background: #7A8A5C;
+}
+.step-text {
+  font-size: 11px;
+  font-weight: 300;
+  line-height: 1.6;
+  color: #3A2A18;
+}
+.step-title {
+  font-weight: 600;
+  color: #6B4A30;
+}
+
+@media print {
+  body { background: #fff; padding: 0; }
+  .drink-card { break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="page-header">
+    <div>
+      <h1>Bartender Reference</h1>
+      <p>Elena &amp; Dragana's Birthday Party</p>
+    </div>
+    <div class="page-header-right">
+      <div>12 drinks total</div>
+      <div>6 mocktails &nbsp;·&nbsp; 6 cocktails</div>
+    </div>
+  </div>
+
+  <div class="section-header">Mocktails — Non-Alcoholic</div>
+  <div id="mocktails-list"></div>
+
+  <div class="section-header">Cocktails — With Spirits</div>
+  <div id="cocktails-list"></div>
+
+</div>
+
+<script>
+/* ============================================================
+   DRINK DATA  — full measurements + steps
+   ============================================================ */
+const drinks = {
+  mocktails: [
+    {
+      name: "Cranberry Watermelon Mint Cooler",
+      noIce: false,
+      liq: "#C04060", liq2: "#E07090", bg: "#C04060", garnish: "mint", gradient: false,
+      ingredients: [
+        { measure: "90 ml",  name: "Cranberry Juice" },
+        { measure: "30 ml",  name: "Watermelon Syrup" },
+        { measure: "20 ml",  name: "Lemon Juice, fresh" },
+        { measure: "8",      name: "Fresh Mint Leaves" },
+        { measure: "60 ml",  name: "Sparkling Water" },
+        { measure: "1 cup",  name: "Ice" },
+      ],
+      steps: [
+        { title: "Muddle the mint", text: "Place mint leaves in the bottom of a glass and gently muddle to release the oils. Don't over-muddle or it turns bitter." },
+        { title: "Build the drink", text: "Fill the glass with ice, then pour in cranberry juice, watermelon syrup, and lemon juice. Stir well to combine." },
+        { title: "Top & garnish", text: "Top with sparkling water for a light fizz. Garnish with a mint sprig and a thin lemon wheel." },
+      ]
+    },
+    {
+      name: "Citrus Mango Sunrise",
+      noIce: true,
+      liq: "#E07030", liq2: "#C04060", bg: "#E07030", garnish: "orange", gradient: true,
+      ingredients: [
+        { measure: "90 ml",  name: "Orange Juice, fresh" },
+        { measure: "20 ml",  name: "Lemon Juice, fresh" },
+        { measure: "30 ml",  name: "Mango Syrup" },
+        { measure: "1 cup",  name: "Ice (optional)" },
+      ],
+      steps: [
+        { title: "Build the base", text: "Fill a glass with ice. Pour in orange juice and lemon juice and give it a quick stir." },
+        { title: "Layer the mango", text: "Gently pour mango syrup over the back of a spoon so it settles at the bottom, creating a sunrise gradient." },
+        { title: "Garnish & serve", text: "Garnish with an orange slice and serve immediately without stirring so guests can admire the layers first." },
+      ]
+    },
+    {
+      name: "Shirley Temple",
+      noIce: false,
+      liq: "#CC6080", liq2: "#E89030", bg: "#CC6080", garnish: "orange", gradient: true,
+      ingredients: [
+        { measure: "120 ml", name: "Ginger Beer" },
+        { measure: "60 ml",  name: "Orange Juice, fresh" },
+        { measure: "30 ml",  name: "Cranberry Juice" },
+        { measure: "1 cup",  name: "Ice" },
+      ],
+      steps: [
+        { title: "Build the base", text: "Fill a glass with ice. Pour in ginger beer and orange juice and stir gently." },
+        { title: "Add the colour", text: "Slowly pour cranberry juice over the back of a spoon so it floats on top and creates a pink gradient." },
+        { title: "Garnish & serve", text: "Garnish with an orange slice. Serve without stirring so guests can see the layers." },
+      ]
+    },
+    {
+      name: "Mango Lemonade",
+      noIce: false,
+      liq: "#D8A020", liq2: "#F0D070", bg: "#D8A020", garnish: "lemon", gradient: false,
+      ingredients: [
+        { measure: "30 ml",  name: "Mango Syrup" },
+        { measure: "20 ml",  name: "Lemon Juice, fresh" },
+        { measure: "120 ml", name: "Sparkling Water" },
+        { measure: "1 cup",  name: "Ice" },
+      ],
+      steps: [
+        { title: "Mix the base", text: "Fill a glass with ice. Add mango syrup and lemon juice and stir to combine." },
+        { title: "Add the sparkle", text: "Top gently with sparkling water to keep the fizz." },
+        { title: "Garnish & serve", text: "Garnish with a lemon wheel and serve immediately." },
+      ]
+    },
+    {
+      name: "Watermelon Mint Lemonade",
+      noIce: false,
+      liq: "#D85878", liq2: "#F09090", bg: "#D85878", garnish: "mint", gradient: false,
+      ingredients: [
+        { measure: "30 ml",  name: "Watermelon Syrup" },
+        { measure: "20 ml",  name: "Lemon Juice, fresh" },
+        { measure: "6",      name: "Fresh Mint Leaves" },
+        { measure: "120 ml", name: "Sparkling Water" },
+        { measure: "1 cup",  name: "Ice" },
+      ],
+      steps: [
+        { title: "Muddle the mint", text: "Place mint leaves in the bottom of a glass and gently muddle to release the oils." },
+        { title: "Build the drink", text: "Fill the glass with ice. Add watermelon syrup and lemon juice and stir to combine." },
+        { title: "Add sparkle & garnish", text: "Top gently with sparkling water. Garnish with a mint sprig and lemon wheel." },
+      ]
+    },
+    {
+      name: "Tropical Sunset",
+      noIce: false,
+      liq: "#E07828", liq2: "#C03050", bg: "#E07828", garnish: "orange", gradient: true,
+      ingredients: [
+        { measure: "30 ml",  name: "Mango Syrup" },
+        { measure: "90 ml",  name: "Orange Juice, fresh" },
+        { measure: "20 ml",  name: "Lemon Juice, fresh" },
+        { measure: "45 ml",  name: "Sparkling Water" },
+        { measure: "30 ml",  name: "Cranberry Juice" },
+        { measure: "1 cup",  name: "Ice" },
+      ],
+      steps: [
+        { title: "Build the base", text: "Fill a tall glass with ice. Pour in mango syrup, orange juice, and lemon juice and stir gently to combine." },
+        { title: "Add the fizz", text: "Top slowly with sparkling water to keep the bubbles." },
+        { title: "Create the sunset", text: "Slowly pour cranberry juice over the back of a spoon so it sinks to the bottom — this creates the red-to-orange gradient." },
+        { title: "Garnish & serve", text: "Garnish with an orange slice and serve immediately without stirring — let your guests admire the sunset first!" },
+      ]
+    },
+  ],
+  cocktails: [
+    {
+      name: "Watermelon Breeze",
+      noIce: false,
+      liq: "#C8385C", liq2: "#E87090", bg: "#C8385C", garnish: "lemon", gradient: false,
+      ingredients: [
+        { measure: "60 ml",  name: "Vodka" },
+        { measure: "45 ml",  name: "Watermelon Syrup" },
+        { measure: "60 ml",  name: "Cranberry Juice" },
+        { measure: "20 ml",  name: "Lemon Juice, fresh" },
+        { measure: "30 ml",  name: "Sparkling Water" },
+        { measure: "1 cup",  name: "Ice" },
+      ],
+      steps: [
+        { title: "Build the drink", text: "Fill a glass with ice. Add vodka, watermelon syrup, cranberry juice, and lemon juice. Stir well to combine." },
+        { title: "Add the sparkle", text: "Top gently with sparkling water to keep the fizz." },
+        { title: "Garnish & serve", text: "Garnish with a lemon wheel or a small wedge of watermelon." },
+      ]
+    },
+    {
+      name: "Mango Mule",
+      noIce: false,
+      liq: "#D08020", liq2: "#F0C058", bg: "#C07020", garnish: "mint", gradient: false,
+      ingredients: [
+        { measure: "60 ml",  name: "Vodka" },
+        { measure: "30 ml",  name: "Mango Syrup" },
+        { measure: "20 ml",  name: "Lemon Juice, fresh" },
+        { measure: "120 ml", name: "Ginger Beer" },
+        { measure: "1 cup",  name: "Ice" },
+      ],
+      steps: [
+        { title: "Build the base", text: "Fill a tall glass with ice. Add vodka, mango syrup, and lemon juice, then stir to combine." },
+        { title: "Top with ginger beer", text: "Slowly pour in ginger beer to preserve the fizz and give it one gentle stir." },
+        { title: "Garnish & serve", text: "Garnish with a lemon wheel and a sprig of mint." },
+      ]
+    },
+    {
+      name: "Moscow Mule",
+      noIce: false,
+      liq: "#B8A040", liq2: "#E0D080", bg: "#A88030", garnish: "mint", gradient: false,
+      ingredients: [
+        { measure: "60 ml",  name: "Vodka" },
+        { measure: "20 ml",  name: "Lemon Juice, fresh" },
+        { measure: "120 ml", name: "Ginger Beer" },
+        { measure: "1 cup",  name: "Ice" },
+      ],
+      steps: [
+        { title: "Build the base", text: "Fill a tall glass with ice. Add vodka and lemon juice, then stir to combine." },
+        { title: "Top with ginger beer", text: "Slowly pour in ginger beer to preserve the fizz and give it one gentle stir." },
+        { title: "Garnish & serve", text: "Garnish with a lemon wheel and a sprig of mint." },
+      ]
+    },
+    {
+      name: "Cape Codder",
+      noIce: false,
+      liq: "#A02848", liq2: "#C06080", bg: "#A02848", garnish: "lemon", gradient: false,
+      ingredients: [
+        { measure: "60 ml",  name: "Vodka" },
+        { measure: "150 ml", name: "Cranberry Juice" },
+        { measure: "10 ml",  name: "Lemon Juice, fresh" },
+        { measure: "1 cup",  name: "Ice" },
+      ],
+      steps: [
+        { title: "Build the drink", text: "Fill a glass with ice. Add vodka, cranberry juice, and lemon juice." },
+        { title: "Stir & garnish", text: "Stir well to combine. Garnish with a lemon wheel." },
+      ]
+    },
+    {
+      name: "Sea Breeze",
+      noIce: true,
+      liq: "#D05840", liq2: "#B82848", bg: "#D05840", garnish: "orange", gradient: true,
+      ingredients: [
+        { measure: "60 ml",  name: "Vodka" },
+        { measure: "90 ml",  name: "Cranberry Juice" },
+        { measure: "90 ml",  name: "Orange Juice, fresh" },
+        { measure: "1 cup",  name: "Ice (optional)" },
+      ],
+      steps: [
+        { title: "Build the drink", text: "Fill a glass with ice. Pour in vodka, cranberry juice, and orange juice." },
+        { title: "Stir & garnish", text: "Stir well and garnish with an orange slice or lemon wheel." },
+      ]
+    },
+    {
+      name: "Watermelon Vodka Smash",
+      noIce: false,
+      liq: "#C84870", liq2: "#E890A8", bg: "#C84870", garnish: "mint", gradient: false,
+      ingredients: [
+        { measure: "60 ml",  name: "Vodka" },
+        { measure: "30 ml",  name: "Watermelon Syrup" },
+        { measure: "20 ml",  name: "Lemon Juice, fresh" },
+        { measure: "8",      name: "Fresh Mint Leaves" },
+        { measure: "1 cup",  name: "Ice" },
+      ],
+      steps: [
+        { title: "Muddle the mint", text: "Place mint leaves in the bottom of a glass and gently muddle to release the oils." },
+        { title: "Build the drink", text: "Fill the glass with ice. Add vodka, watermelon syrup, and lemon juice. Stir well to combine." },
+        { title: "Garnish & serve", text: "Garnish with a sprig of mint and a lemon wheel." },
+      ]
+    },
+  ]
+};
+
+/* ============================================================
+   SVG HELPERS (same as menu)
+   ============================================================ */
+let _uid = 0;
+function uid() { return 'b' + (++_uid); }
+function hexRgb(hex) {
+  return { r: parseInt(hex.slice(1,3),16), g: parseInt(hex.slice(3,5),16), b: parseInt(hex.slice(5,7),16) };
+}
+function rgb(c, a) {
+  return a !== undefined ? `rgba(${c.r},${c.g},${c.b},${a})` : `rgb(${c.r},${c.g},${c.b})`;
+}
+
+function mintGarnish(x, y, rot) {
+  return `<g transform="translate(${x},${y}) rotate(${rot})">
+    <path d="M0,0 C-3,-5 -6,-8 -5,-13" stroke="#4A8035" stroke-width="1.2" fill="none"/>
+    <ellipse cx="-6" cy="-14" rx="4" ry="2.5" fill="#6EA850" transform="rotate(20,-6,-14)"/>
+    <ellipse cx="-2" cy="-8" rx="3.5" ry="2.2" fill="#80BC60" transform="rotate(-15,-2,-8)"/>
+    <ellipse cx="1.5" cy="-3.5" rx="3" ry="2" fill="#6EA850" transform="rotate(10,1.5,-3.5)"/>
+  </g>`;
+}
+function lemonGarnish(x, y, rot) {
+  return `<g transform="translate(${x},${y}) rotate(${rot})">
+    <ellipse cx="0" cy="0" rx="9" ry="6" fill="#F0D038" stroke="#C8A818" stroke-width="0.8"/>
+    <path d="M-9,0 L9,0" stroke="#C8A818" stroke-width="0.4"/>
+    <path d="M0,-6 Q2.5,-3 0,6 Q-2.5,-3 0,-6" fill="rgba(255,255,255,0.2)"/>
+  </g>`;
+}
+function orangeGarnish(x, y, rot) {
+  return `<g transform="translate(${x},${y}) rotate(${rot})">
+    <ellipse cx="0" cy="0" rx="10" ry="7" fill="#F07828" stroke="#C85818" stroke-width="0.8"/>
+    <path d="M-10,0 L10,0" stroke="#C85818" stroke-width="0.4"/>
+    <path d="M0,-7 Q3,-3.5 0,7 Q-3,-3.5 0,-7" fill="rgba(255,255,255,0.2)"/>
+  </g>`;
+}
+function garnishSVG(type, x, y, rot) {
+  if (type === 'mint')   return mintGarnish(x, y, rot);
+  if (type === 'lemon')  return lemonGarnish(x, y, rot);
+  if (type === 'orange') return orangeGarnish(x, y, rot);
+  return '';
+}
+function iceCubes(config) {
+  return config.map(({x,y,w,h}) =>
+    `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="2"
+      fill="rgba(255,255,255,0.55)" stroke="rgba(255,255,255,0.8)" stroke-width="0.7"/>`
+  ).join('');
+}
+
+function drawHighball(d) {
+  const id = uid(), c = hexRgb(d.liq), c2 = hexRgb(d.liq2), bg = hexRgb(d.bg);
+  const liquidFill = d.gradient ? `url(#lg_${id})` : rgb(c, 0.52);
+  const gradDef = d.gradient
+    ? `<linearGradient id="lg_${id}" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="${rgb(c2)}" stop-opacity="0.55"/>
+        <stop offset="100%" stop-color="${rgb(c)}" stop-opacity="0.65"/>
+       </linearGradient>` : '';
+  let gx = 58, gy = 16, gr = -15;
+  if (d.garnish === 'mint') { gx = 53; gy = 11; gr = -18; }
+  return `<svg viewBox="0 0 118 170" xmlns="http://www.w3.org/2000/svg">
+  <defs><filter id="bl_${id}"><feGaussianBlur stdDeviation="13"/></filter>${gradDef}</defs>
+  <ellipse cx="57" cy="100" rx="52" ry="65" fill="${rgb(bg)}" opacity="0.09" filter="url(#bl_${id})"/>
+  <path d="M24,22 L94,22 L86,158 L32,158 Z" fill="rgba(255,255,255,0.26)" stroke="${rgb(c)}" stroke-opacity="0.42" stroke-width="1.5"/>
+  <path d="M26,66 L92,66 L86,158 L32,158 Z" fill="${liquidFill}"/>
+  <path d="M26,66 Q59,61 92,66" stroke="rgba(255,255,255,0.52)" stroke-width="1" fill="none"/>
+  <path d="M30,30 L33,154" stroke="rgba(255,255,255,0.28)" stroke-width="2.5" stroke-linecap="round"/>
+  ${iceCubes([{x:36,y:74,w:20,h:16},{x:59,y:79,w:17,h:14},{x:36,y:95,w:17,h:13}])}
+  <line x1="24" y1="22" x2="94" y2="22" stroke="${rgb(c)}" stroke-opacity="0.48" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="75" y1="18" x2="68" y2="158" stroke="${rgb(c)}" stroke-width="3" stroke-linecap="round" opacity="0.7"/>
+  <line x1="75" y1="18" x2="68" y2="158" stroke="white" stroke-width="1" stroke-dasharray="8,8" stroke-dashoffset="4" opacity="0.6"/>
+  ${garnishSVG(d.garnish, gx, gy, gr)}
+</svg>`;
+}
+
+/* ============================================================
+   RENDER
+   ============================================================ */
+function renderCard(d) {
+  const svg = drawHighball(d);
+
+  const ingredientRows = d.ingredients.map(i =>
+    `<div class="ingredient-row">
+      <span class="ingredient-measure">${i.measure}</span>
+      <span class="ingredient-name">${i.name}</span>
+    </div>`
+  ).join('');
+
+  const stepRows = d.steps.map((s, i) =>
+    `<div class="step">
+      <div class="step-num">${i + 1}</div>
+      <div class="step-text"><span class="step-title">${s.title}. </span>${s.text}</div>
+    </div>`
+  ).join('');
+
+  const noIceBadge = d.noIce
+    ? '<div class="no-ice-badge">❅ also without ice</div>'
+    : '';
+
+  return `<div class="drink-card">
+    <div class="col-glass">${svg}</div>
+    <div class="col-ingredients">
+      <div class="drink-name">${d.name}</div>
+      ${noIceBadge}
+      <div class="ingredients-label">Ingredients</div>
+      ${ingredientRows}
+    </div>
+    <div class="col-steps">
+      <div class="steps-label">Steps</div>
+      ${stepRows}
+    </div>
+  </div>`;
+}
+
+document.getElementById('mocktails-list').innerHTML =
+  drinks.mocktails.map(renderCard).join('');
+
+document.getElementById('cocktails-list').innerHTML =
+  drinks.cocktails.map(renderCard).join('');
+</script>
+</body>
+</html>

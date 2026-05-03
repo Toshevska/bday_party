@@ -51,6 +51,21 @@ body { background: transparent; font-family: 'Jost', sans-serif; color: #3A3A3A;
 .drink-ingredients li::before { content: '–  '; color: #8FAF9B; }
 .no-ice-note { margin-top: 7px; font-size: 9.5px; color: #8FAF9B; font-style: italic; font-weight: 400; }
 .no-ice-note::before { content: '❅  '; font-style: normal; }
+
+/* Pigeon in header */
+.header-pigeon { position:absolute; right:0; top:-20px; width:130px; opacity:0.88; }
+.header-pigeon svg { width:100%; height:auto; }
+.page-header { position:relative; }
+
+/* Signature dual version */
+.sig-versions { display:grid; grid-template-columns:1fr 1px 1fr; gap:0 18px; margin:14px 0 14px; }
+.sig-version-sep { background:rgba(212,180,106,0.30); }
+.sig-version-label {
+  font-size:8.5px; letter-spacing:0.30em; text-transform:uppercase;
+  color:#D4B46A; font-weight:600; margin-bottom:9px;
+  font-family:'Jost',sans-serif;
+}
+
 .footer-note { text-align: center; margin-top: 48px; font-size: 9.5px; letter-spacing: 0.18em; text-transform: uppercase; color: #8FAF9B; opacity: 0.7; }
 
 /* MOBILE */
@@ -94,6 +109,7 @@ body { background: transparent; font-family: 'Jost', sans-serif; color: #3A3A3A;
 <div class="page">
 
   <div class="page-header">
+  <div class="header-pigeon" id="header-pigeon-wrap"></div>
     <p class="header-party">Elena &amp; Dragana's Birthday Party</p>
     <h1 class="page-title">Drinks</h1>
     <p class="header-tagline">From baby bumps to seasoned sippers — everyone's covered</p>
@@ -101,23 +117,34 @@ body { background: transparent; font-family: 'Jost', sans-serif; color: #3A3A3A;
 
   <!-- BIRTHDAY STORM HERO -->
   <div class="signature-wrap">
-    <a href="recipe.html?drink=the-birthday-storm" style="text-decoration:none;color:inherit;display:block;transition:opacity 0.18s;" onmouseover="this.style.opacity='0.75'" onmouseout="this.style.opacity='1'">
+    <a href="recipe.html?drink=hugo-pigeon" style="text-decoration:none;color:inherit;display:block;transition:opacity 0.18s;" onmouseover="this.style.opacity='0.75'" onmouseout="this.style.opacity='1'">
     <div class="signature-inner">
       <div class="signature-glass" id="gs-glass"></div>
       <div class="signature-text">
-        <div class="signature-name">The Birthday Storm</div>
-        <div class="signature-ingredients-label">Ingredients</div>
-        <ul class="signature-ingredients">
-          <li>8 fresh mint leaves</li>
-          <li>30 ml watermelon syrup</li>
-          <li>60 ml vodka</li>
-          <li>20 ml mango syrup</li>
-          <li>20 ml lemon juice</li>
-          <li>90 ml ginger beer</li>
-          <li>30 ml cranberry juice</li>
-          <li>1 cup ice</li>
-        </ul>
-        <p class="signature-mocktail">Mocktail version: skip the vodka, add 30 ml extra sparkling water.</p>
+        <div class="signature-name">Hugo Pigeon</div>
+        <div class="sig-versions">
+          <div>
+            <div class="sig-version-label">🌿 Mocktail</div>
+            <ul class="signature-ingredients">
+              <li>40 ml homemade syrup</li>
+              <li>50 ml cranberry juice</li>
+              <li>Ginger beer to top</li>
+              <li>Ice</li>
+            </ul>
+          </div>
+          <div class="sig-version-sep"></div>
+          <div>
+            <div class="sig-version-label">🍸 Cocktail</div>
+            <ul class="signature-ingredients">
+              <li>50 ml vodka</li>
+              <li>30 ml homemade syrup</li>
+              <li>30 ml cranberry juice</li>
+              <li>Ginger beer to top</li>
+              <li>Ice</li>
+            </ul>
+          </div>
+        </div>
+        <p class="signature-mocktail">Tap card for full recipe &amp; instructions</p>
       </div>
     </div>
     </a>
@@ -266,7 +293,7 @@ function drawHighball(d){
   <circle cx="119" cy="76" r="2.2" fill="rgba(200,228,255,0.38)"/>
   <circle cx="121" cy="89" r="1.5" fill="rgba(200,228,255,0.28)"/>
   <!-- straw -->
-  <path d="M104,32 C103,95 100,168 98,210" stroke="${rgb(c)}" stroke-width="5" stroke-linecap="round" fill="none" opacity="0.88"/>
+  <path d="M104,32 C103,92 100,162 99,196" stroke="${rgb(c)}" stroke-width="5" stroke-linecap="round" fill="none" opacity="0.88"/>
   <path d="M104,32 C103,95 100,168 98,210" stroke="rgba(255,255,255,0.72)" stroke-width="1.6" stroke-dasharray="12,12" stroke-dashoffset="6" fill="none"/>
   <!-- rim -->
   <path d="M28,36 C56,28 94,28 122,36" stroke="rgba(140,115,70,0.30)" stroke-width="2.2" fill="none" stroke-linecap="round"/>
@@ -359,8 +386,8 @@ function drawBalloon(d){
   <path d="M46,202 Q79,210 112,202" stroke="rgba(140,115,70,0.32)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
   <path d="M52,206 Q79,212 106,206" stroke="rgba(140,115,70,0.20)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
   <!-- straw -->
-  <path d="M110,36 C108,90 102,162 100,206" stroke="${rgb(c)}" stroke-width="4.5" stroke-linecap="round" fill="none" opacity="0.86"/>
-  <path d="M110,36 C108,90 102,162 100,206" stroke="rgba(255,255,255,0.70)" stroke-width="1.5" stroke-dasharray="11,11" stroke-dashoffset="5" fill="none"/>
+  <path d="M110,36 C109,82 106,126 104,156" stroke="${rgb(c)}" stroke-width="4.5" stroke-linecap="round" fill="none" opacity="0.86"/>
+  <path d="M110,36 C109,82 106,126 104,156" stroke="rgba(255,255,255,0.70)" stroke-width="1.5" stroke-dasharray="11,11" stroke-dashoffset="5" fill="none"/>
   <!-- rim line -->
   <path d="M14,38 C44,30 114,30 144,38" stroke="rgba(140,115,70,0.28)" stroke-width="2" fill="none" stroke-linecap="round"/>
   ${garnishSVG(d.garnish,gx,gy,gr)}
@@ -439,8 +466,8 @@ function drawBirthdayStorm(){
   <circle cx="32" cy="82" r="2.5" fill="rgba(200,228,255,0.38)"/>
   <circle cx="34" cy="94" r="1.8" fill="rgba(200,228,255,0.30)"/>
   <circle cx="119" cy="76" r="2.2" fill="rgba(200,228,255,0.36)"/>
-  <path d="M104,32 C103,95 100,168 98,210" stroke="#8B1020" stroke-width="5" stroke-linecap="round" fill="none" opacity="0.90"/>
-  <path d="M104,32 C103,95 100,168 98,210" stroke="rgba(255,255,255,0.70)" stroke-width="1.6" stroke-dasharray="12,12" stroke-dashoffset="6" fill="none"/>
+  <path d="M104,32 C103,92 100,162 99,196" stroke="#8B1020" stroke-width="5" stroke-linecap="round" fill="none" opacity="0.90"/>
+  <path d="M104,32 C103,92 100,162 99,196" stroke="rgba(255,255,255,0.70)" stroke-width="1.6" stroke-dasharray="12,12" stroke-dashoffset="6" fill="none"/>
   <path d="M28,36 C56,28 94,28 122,36" stroke="rgba(140,115,70,0.30)" stroke-width="2.2" fill="none" stroke-linecap="round"/>
   ${mintGarnish(106,30,-16)}
   ${lemonGarnish(118,48,-24)}
@@ -474,6 +501,87 @@ function renderDrink(d){
 }
 
 document.getElementById('gs-glass').innerHTML = drawBirthdayStorm();
+
+/* ============================================================
+   PIGEON ILLUSTRATION
+   ============================================================ */
+function drawPigeon() {
+  return `<svg viewBox="0 0 145 125" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="pg-blur" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="8"/></filter>
+    <filter id="pg-wc" x="-6%" y="-6%" width="112%" height="112%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="3" seed="31" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="4" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </defs>
+
+  <!-- ground shadow -->
+  <ellipse cx="62" cy="115" rx="38" ry="7" fill="#7E9E8C" opacity="0.12" filter="url(#pg-blur)"/>
+
+  <!-- TAIL feathers -->
+  <path d="M22,76 C14,82 8,92 6,104 C12,98 18,88 26,84 Z" fill="#7A8EA0" opacity="0.55"/>
+  <path d="M25,83 C17,89 11,99 9,111 C15,105 21,93 29,89 Z" fill="#8A9EB0" opacity="0.45"/>
+  <path d="M28,88 C22,95 18,105 18,115 C22,109 28,99 34,94 Z" fill="#96AABF" opacity="0.38"/>
+
+  <!-- BODY main wash -->
+  <path d="M24,74 C20,57 28,40 50,32 C72,24 97,32 104,54 C111,76 100,93 77,98 C54,103 28,91 24,74 Z"
+    fill="#8A9EB0" opacity="0.60" filter="url(#pg-wc)"/>
+  <!-- body secondary wash -->
+  <path d="M28,72 C25,58 33,44 53,37 C72,30 93,36 99,56 C105,76 95,90 75,94 C55,98 31,86 28,72 Z"
+    fill="#9AAEC0" opacity="0.32"/>
+  <!-- body inner light -->
+  <path d="M36,57 C33,50 39,40 53,36 C59,38 63,44 58,54 C50,52 42,54 36,57 Z" fill="rgba(255,255,255,0.20)"/>
+
+  <!-- WING darker overlay -->
+  <path d="M27,70 C25,52 35,36 57,30 C78,24 98,32 100,52 C92,46 78,42 62,46 C46,50 34,60 27,70 Z"
+    fill="#7A8EA0" opacity="0.52"/>
+  <!-- wing feather lines -->
+  <path d="M31,67 C39,56 53,50 69,50 C79,50 89,54 96,60" stroke="#6A7E90" stroke-width="1.1" fill="none" opacity="0.40"/>
+  <path d="M34,74 C42,64 56,58 72,58 C81,58 90,62 95,68" stroke="#6A7E90" stroke-width="0.8" fill="none" opacity="0.30"/>
+
+  <!-- CHEST / BELLY warm area -->
+  <path d="M57,57 C72,55 90,64 98,78 C94,93 82,100 67,100 C52,100 40,93 35,80 C38,66 46,59 57,57 Z"
+    fill="#C8C0B6" opacity="0.48"/>
+  <path d="M60,63 C72,61 84,69 89,80 C85,90 77,95 67,95 C57,94 48,88 45,78 C47,68 54,64 60,63 Z"
+    fill="#D4BEB0" opacity="0.28"/>
+
+  <!-- HEAD -->
+  <ellipse cx="107" cy="46" rx="22" ry="21" fill="#8A9EB0" opacity="0.70"/>
+  <path d="M98,38 C102,32 110,30 116,35 C112,33 106,34 100,40 Z" fill="rgba(255,255,255,0.18)"/>
+
+  <!-- IRIDESCENT NECK shimmer -->
+  <path d="M86,62 C90,52 98,46 108,42" stroke="#7AAA8A" stroke-width="5" fill="none" opacity="0.32" stroke-linecap="round"/>
+  <path d="M88,65 C92,55 100,49 110,45" stroke="#8090B8" stroke-width="3" fill="none" opacity="0.22" stroke-linecap="round"/>
+
+  <!-- EYE ring -->
+  <circle cx="114" cy="43" r="6.5" fill="#D4C860" opacity="0.88"/>
+  <!-- pupil -->
+  <circle cx="114" cy="43" r="4.5" fill="#1C1428" opacity="0.92"/>
+  <!-- highlight -->
+  <circle cx="115.8" cy="41.2" r="1.4" fill="rgba(255,255,255,0.80)"/>
+
+  <!-- BEAK -->
+  <path d="M122,45 L138,47 L122,50 Z" fill="#C8A060" opacity="0.90"/>
+  <path d="M122,45 L138,47" stroke="#B89050" stroke-width="0.8" fill="none" opacity="0.6"/>
+  <path d="M120,44 C122,42 124,43 124,45 C124,47 122,48 120,47 Z" fill="#D0B878" opacity="0.60"/>
+
+  <!-- LEGS -->
+  <path d="M53,99 L51,113" stroke="#C86840" stroke-width="2" stroke-linecap="round" fill="none"/>
+  <path d="M51,113 L44,119 M51,113 L49,120 M51,113 L56,119 M51,113 L59,116" stroke="#C86840" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+  <path d="M51,113 L46,109" stroke="#C86840" stroke-width="1.1" stroke-linecap="round" fill="none"/>
+
+  <path d="M70,98 L68,112" stroke="#C86840" stroke-width="2" stroke-linecap="round" fill="none"/>
+  <path d="M68,112 L61,118 M68,112 L66,119 M68,112 L73,118 M68,112 L76,115" stroke="#C86840" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+  <path d="M68,112 L63,108" stroke="#C86840" stroke-width="1.1" stroke-linecap="round" fill="none"/>
+
+  <!-- subtle texture spots -->
+  <circle cx="62" cy="70" r="9" fill="rgba(255,255,255,0.07)"/>
+  <circle cx="82" cy="78" r="6" fill="rgba(160,140,180,0.05)"/>
+</svg>`;
+}
+
+document.getElementById('header-pigeon-wrap').innerHTML = `<svg viewBox="0 0 210 295" xmlns="http://www.w3.org/2000/svg"> <defs> <filter id="ptex" x="-5%" y="-5%" width="110%" height="110%"> <feTurbulence type="fractalNoise" baseFrequency="0.055" numOctaves="3" seed="22" result="n"/> <feDisplacementMap in="SourceGraphic" in2="n" scale="3" xChannelSelector="R" yChannelSelector="G"/> </filter> <filter id="psh" x="-40%" y="-40%" width="180%" height="180%"> <feGaussianBlur stdDeviation="9"/> </filter> </defs> <!-- ground shadow --> <ellipse cx="105" cy="287" rx="50" ry="9" fill="#5F7A6C" opacity="0.13" filter="url(#psh)"/> <!-- ====== PARTY HAT ====== --> <!-- cone --> <path d="M105,14 L70,90 L140,90 Z" fill="#D4B46A" filter="url(#ptex)"/> <!-- highlight stripe --> <path d="M105,14 L92,56 L100,56 Z" fill="#E3C98B" opacity="0.55"/> <path d="M105,14 L110,56 L118,56 Z" fill="rgba(255,255,255,0.18)"/> <!-- band --> <rect x="68" y="85" width="74" height="13" rx="5" fill="#5F7A6C"/> <!-- gold dots on band --> <circle cx="83" cy="91" r="3" fill="#D4B46A"/> <circle cx="105" cy="91" r="3" fill="#D4B46A"/> <circle cx="127" cy="91" r="3" fill="#D4B46A"/> <!-- pom-pom --> <circle cx="105" cy="12" r="13" fill="#F2EDE4" opacity="0.88"/> <circle cx="105" cy="12" r="9" fill="#E3C98B"/> <circle cx="101" cy="8" r="3.5" fill="rgba(255,255,255,0.65)"/> <!-- ====== HEAD ====== --> <ellipse cx="105" cy="122" rx="50" ry="46" fill="#8FAF9B" filter="url(#ptex)"/> <!-- subtle light patch --> <ellipse cx="90" cy="110" rx="22" ry="18" fill="rgba(255,255,255,0.14)"/> <!-- ====== EYES ====== --> <!-- left --> <circle cx="82" cy="117" r="22" fill="#F2EDE4"/> <circle cx="82" cy="117" r="17" fill="#5F7A6C"/> <circle cx="82" cy="117" r="10" fill="#1E2E28"/> <circle cx="76" cy="110" r="5" fill="rgba(255,255,255,0.88)"/> <circle cx="86" cy="122" r="2" fill="rgba(255,255,255,0.40)"/> <!-- right --> <circle cx="128" cy="117" r="22" fill="#F2EDE4"/> <circle cx="128" cy="117" r="17" fill="#5F7A6C"/> <circle cx="128" cy="117" r="10" fill="#1E2E28"/> <circle cx="122" cy="110" r="5" fill="rgba(255,255,255,0.88)"/> <circle cx="132" cy="122" r="2" fill="rgba(255,255,255,0.40)"/> <!-- ====== BEAK ====== --> <path d="M97,140 L105,155 L113,140 Q105,134 97,140 Z" fill="#D4B46A"/> <path d="M99,147 L105,155 L111,147" stroke="#B88A32" stroke-width="1.2" fill="none"/> <!-- ====== BODY ====== --> <ellipse cx="105" cy="205" rx="72" ry="76" fill="#8FAF9B" filter="url(#ptex)"/> <!-- belly lighter wash --> <ellipse cx="105" cy="218" rx="50" ry="55" fill="#A8C4B4" opacity="0.42"/> <!-- body light spot --> <ellipse cx="85" cy="188" rx="18" ry="24" fill="rgba(255,255,255,0.11)"/> <!-- ====== HEART on chest ====== --> <path d="M105,194 C105,194 86,180 86,169 C86,161 93,157 99,161 C101,163 105,167 105,167 C105,167 109,163 111,161 C117,157 124,161 124,169 C124,180 105,194 105,194 Z" fill="#5F7A6C" opacity="0.55"/> <path d="M105,194 C105,194 86,180 86,169 C86,161 93,157 99,161 C101,163 105,167 105,167 C105,167 109,163 111,161 C117,157 124,161 124,169 C124,180 105,194 105,194 Z" fill="none" stroke="#D4B46A" stroke-width="2" opacity="0.55"/> <!-- ====== WINGS ====== --> <!-- left --> <path d="M34,186 C24,172 22,198 26,214 C30,228 44,238 56,228 C63,221 58,205 46,197 C39,192 34,186 34,186 Z" fill="#7E9E8C" filter="url(#ptex)"/> <path d="M28,196 C33,189 43,187 53,191" stroke="#5F7A6C" stroke-width="1.2" fill="none" opacity="0.42"/> <path d="M26,210 C32,203 43,201 53,206" stroke="#5F7A6C" stroke-width="1" fill="none" opacity="0.35"/> <!-- right --> <path d="M176,186 C186,172 188,198 184,214 C180,228 166,238 154,228 C147,221 152,205 164,197 C171,192 176,186 176,186 Z" fill="#7E9E8C" filter="url(#ptex)"/> <path d="M182,196 C177,189 167,187 157,191" stroke="#5F7A6C" stroke-width="1.2" fill="none" opacity="0.42"/> <path d="M184,210 C178,203 167,201 157,206" stroke="#5F7A6C" stroke-width="1" fill="none" opacity="0.35"/> <!-- body feather details --> <path d="M58,206 C65,199 76,197 90,201" stroke="#5F7A6C" stroke-width="1.2" fill="none" opacity="0.32"/> <path d="M56,222 C64,215 76,213 92,218" stroke="#5F7A6C" stroke-width="1" fill="none" opacity="0.27"/> <path d="M60,238 C68,231 80,229 95,234" stroke="#5F7A6C" stroke-width="0.9" fill="none" opacity="0.22"/> <!-- ====== LEGS ====== --> <path d="M86,276 L82,292" stroke="#5F7A6C" stroke-width="4.5" stroke-linecap="round" fill="none"/> <path d="M82,292 L64,300 M82,292 L80,302 M82,292 L94,300 M82,292 L77,285" stroke="#5F7A6C" stroke-width="3.5" stroke-linecap="round" fill="none"/> <path d="M124,276 L128,292" stroke="#5F7A6C" stroke-width="4.5" stroke-linecap="round" fill="none"/> <path d="M128,292 L110,300 M128,292 L130,302 M128,292 L142,300 M128,292 L134,285" stroke="#5F7A6C" stroke-width="3.5" stroke-linecap="round" fill="none"/> </svg>`;
+
 document.getElementById('mocktails-grid').innerHTML = drinks.mocktails.map(renderDrink).join('');
 document.getElementById('cocktails-grid').innerHTML = drinks.cocktails.map(renderDrink).join('');
 </script>

@@ -9,10 +9,10 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-  background: #2C2418;
+  background: #1E2E28;
   font-family: 'Jost', sans-serif;
   padding: 40px 24px;
-  color: #3A2A18;
+  color: #3A3A3A;
 }
 
 .page {
@@ -22,8 +22,8 @@ body {
 
 /* ---- PAGE HEADER ---- */
 .page-header {
-  background: #9C4A28;
-  color: #FBF4E8;
+  background: #5F7A6C;
+  color: transparent;
   padding: 28px 40px;
   margin-bottom: 6px;
   display: flex;
@@ -54,7 +54,7 @@ body {
 
 /* ---- SECTION HEADER ---- */
 .section-header {
-  background: #6B4A30;
+  background: #7E9E8C;
   color: #F0E4D0;
   padding: 10px 40px;
   font-size: 10px;
@@ -67,17 +67,17 @@ body {
 
 /* ---- DRINK CARD ---- */
 .drink-card {
-  background: #FBF4E8;
+  background: transparent;
   display: grid;
   grid-template-columns: 110px 1fr 1fr;
   gap: 0;
   margin-bottom: 4px;
-  border-left: 4px solid #9C4A28;
+  border-left: 4px solid #5F7A6C;
   min-height: 160px;
 }
 
 .drink-card:nth-child(even) {
-  border-left-color: #7A8A5C;
+  border-left-color: #8FAF9B;
 }
 
 /* Glass column */
@@ -86,7 +86,7 @@ body {
   align-items: center;
   justify-content: center;
   padding: 16px 8px;
-  background: #F4EAD8;
+  background: #F0F4F1;
   border-right: 1px solid rgba(176,112,64,0.15);
 }
 .col-glass svg {
@@ -104,7 +104,7 @@ body {
   font-family: 'Playfair Display', serif;
   font-style: italic;
   font-size: 16px;
-  color: #9C4A28;
+  color: #5F7A6C;
   margin-bottom: 5px;
   line-height: 1.25;
 }
@@ -143,7 +143,7 @@ body {
 .ingredient-measure {
   font-size: 11px;
   font-weight: 600;
-  color: #6B4A30;
+  color: #4A6A5C;
   min-width: 52px;
   text-align: right;
   flex-shrink: 0;
@@ -152,7 +152,7 @@ body {
 .ingredient-name {
   font-size: 11.5px;
   font-weight: 300;
-  color: #3A2A18;
+  color: #3A3A3A;
   line-height: 1.5;
 }
 
@@ -178,8 +178,8 @@ body {
   align-items: flex-start;
 }
 .step-num {
-  background: #9C4A28;
-  color: #FBF4E8;
+  background: #5F7A6C;
+  color: transparent;
   font-size: 9px;
   font-weight: 600;
   width: 18px;
@@ -199,16 +199,16 @@ body {
   font-size: 11px;
   font-weight: 300;
   line-height: 1.6;
-  color: #3A2A18;
+  color: #3A3A3A;
 }
 .step-title {
   font-weight: 600;
-  color: #6B4A30;
+  color: #4A6A5C;
 }
 
 
 @media (max-width: 640px) {
-  body { padding: 16px 0; background: #2C2418; }
+  body { padding: 16px 0; background: #1E2E28; }
 
   .page-header {
     padding: 20px 16px;
@@ -398,6 +398,28 @@ const drinks = {
     },
   ],
   cocktails: [
+    {
+      name: "The Birthday Storm",
+      noIce: false,
+      liq: "#8B1020", liq2: "#C87830", bg: "#9B1E35", garnish: "mint", gradient: true,
+      ingredients: [
+        { measure: "8",      name: "Fresh Mint Leaves" },
+        { measure: "30 ml",  name: "Watermelon Syrup" },
+        { measure: "60 ml",  name: "Vodka" },
+        { measure: "20 ml",  name: "Mango Syrup" },
+        { measure: "20 ml",  name: "Lemon Juice, fresh" },
+        { measure: "90 ml",  name: "Ginger Beer" },
+        { measure: "30 ml",  name: "Cranberry Juice (float)" },
+        { measure: "1 cup",  name: "Ice" },
+      ],
+      steps: [
+        { title: "Muddle the mint", text: "Place the mint leaves in the glass and gently muddle to release the oils. Don't over-muddle or it turns bitter." },
+        { title: "Build the heart", text: "Fill the glass with ice. Add vodka, watermelon syrup, mango syrup, and lemon juice. Stir well." },
+        { title: "Add the storm", text: "Slowly pour ginger beer over the back of a spoon to preserve the fizz. One gentle stir." },
+        { title: "The signature float", text: "Float cranberry juice slowly over the back of a spoon so it sits as a dark cloud on top. DO NOT STIR." },
+        { title: "Garnish & serve", text: "Mint sprig + lemon wheel on rim. Serve immediately — tell guests to admire before stirring!" },
+      ]
+    },
     {
       name: "Watermelon Breeze",
       noIce: false,
@@ -610,6 +632,7 @@ function renderCard(d) {
   </div>`;
 }
 
+// Add note to Garden Storm float step
 document.getElementById('mocktails-list').innerHTML =
   drinks.mocktails.map(renderCard).join('');
 

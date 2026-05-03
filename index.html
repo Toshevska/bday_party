@@ -137,6 +137,13 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.18s ease, opacity 0.18s ease;
+}
+.drink-card:hover {
+  transform: translateY(-3px);
+  opacity: 0.88;
 }
 
 .drink-svg-wrap {
@@ -295,7 +302,7 @@ body {
 
     <h1 class="menu-title">Drinks</h1>
     <p class="header-eyebrow">Elena &amp; Dragana's Birthday Party</p>
-    <p class="header-tagline">curated for guests aged a few months to 30+ &nbsp;&middot;&nbsp; everyone's included &#x1F37B;</p>
+    <p class="header-tagline">curated for not-yet-born guests to 30+ &nbsp;&middot;&nbsp; everyone's included &#x1F37B;</p>
 
     <svg class="header-botanical-bottom" viewBox="0 0 800 56" xmlns="http://www.w3.org/2000/svg">
       <g opacity="0.65">
@@ -520,13 +527,14 @@ function renderDrink(d) {
   const svg = drawHighball(d);
   const ingredients = d.ingredients.join('<br>');
   const noIceTag = d.noIce ? '<div class="no-ice-note">also available without ice</div>' : '';
-  return `<div class="drink-card">
+  const slug = d.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+  return `<a class="drink-card" href="recipe.html?drink=${slug}">
     <div class="drink-svg-wrap">${svg}</div>
     <div class="drink-name">${d.name}</div>
     <div class="drink-divider"><span class="drink-divider-leaf">✦</span></div>
     <div class="drink-ingredients">${ingredients}</div>
     ${noIceTag}
-  </div>`;
+  </a>`;
 }
 
 document.getElementById('mocktails-grid').innerHTML = drinks.mocktails.map(renderDrink).join('');

@@ -424,13 +424,27 @@ const allDrinks = [
     liq:"#C04068",liq2:"#E080A0",bg:"#C04068",garnish:"mint",gradient:false,glass:"rocks",wc:"c",
     ingredients:[{measure:"60 ml",name:"Vodka"},{measure:"30 ml",name:"Watermelon Syrup"},{measure:"20 ml",name:"Lemon Juice, fresh"},{measure:"8",name:"Fresh Mint Leaves"},{measure:"1 cup",name:"Ice"}],
     steps:[{title:"Muddle the mint",text:"Place the mint leaves in the bottom of a glass and gently muddle to release the oils."},{title:"Build the drink",text:"Fill the glass with ice. Add the vodka, watermelon syrup, and lemon juice. Stir well."},{title:"Garnish & serve",text:"Garnish with a sprig of mint and a lemon wheel."}]},
-  { name:"Hugo Pigeon", type:"Signature Mocktail", noIce:false,
+  { name:"Hugo Pigeon", type:"Signature Cocktail / Mocktail", noIce:false,
     liq:"#8B1020",liq2:"#C87830",bg:"#9B1E35",garnish:"mint",gradient:true,glass:"birthday-storm",wc:"a",
     ingredients:[
       { measure:"40 ml", name:"Homemade Watermelon–Mango–Mint–Lemon Syrup", syrupInfo:true },
       { measure:"50 ml", name:"Cranberry Juice" },
       { measure:"top",   name:"Ginger Beer" },
       { measure:"1 cup", name:"Ice" },
+    ],
+    cocktailIngredients:[
+      { measure:"50 ml", name:"Vodka" },
+      { measure:"30 ml", name:"Homemade Watermelon–Mango–Mint–Lemon Syrup", syrupInfo:true },
+      { measure:"30 ml", name:"Cranberry Juice" },
+      { measure:"top",   name:"Ginger Beer" },
+      { measure:"1 cup", name:"Ice" },
+    ],
+    cocktailSteps:[
+      {title:"Add the vodka",text:"Fill a tall glass with ice. Pour in 50 ml vodka."},
+      {title:"Add the syrup",text:"Pour in 30 ml of the homemade watermelon–mango–mint–lemon syrup and stir gently."},
+      {title:"Add cranberry",text:"Pour in 30 ml of cranberry juice and give it one gentle stir."},
+      {title:"Top with ginger beer",text:"Slowly top up with ginger beer over the back of a spoon to keep the fizz and create a beautiful layered effect."},
+      {title:"Garnish & serve",text:"Garnish with fresh mint and a lemon wheel. Serve immediately!"},
     ],
     steps:[
       {title:"Fill with ice",text:"Fill a tall glass generously with ice."},
@@ -631,10 +645,15 @@ function render(d){
     ? `<div class="col-label" style="margin-bottom:6px;">🌿 Mocktail</div>${renderIngList(d.ingredients)}<div class="col-label" style="margin-top:18px;margin-bottom:6px;">🍸 Cocktail</div>${renderIngList(d.cocktailIngredients)}`
     : renderIngList(d.ingredients);
 
-  const stepRows=d.steps.map((s,i)=>`<div class="step">
-    <div class="step-num">${i+1}</div>
-    <div class="step-content"><div class="step-title">${s.title}</div><div class="step-text">${s.text}</div></div>
-  </div>`).join('');
+  function renderStepList(list){
+    return list.map((s,i)=>`<div class="step">
+      <div class="step-num">${i+1}</div>
+      <div class="step-content"><div class="step-title">${s.title}</div><div class="step-text">${s.text}</div></div>
+    </div>`).join('');
+  }
+  const stepRows = d.cocktailSteps
+    ? `<div class="col-label" style="margin-bottom:10px;">🌿 Mocktail Steps</div>${renderStepList(d.steps)}<div class="col-label" style="margin-top:24px;margin-bottom:10px;">🍸 Cocktail Steps</div>${renderStepList(d.cocktailSteps)}`
+    : renderStepList(d.steps);
 
   document.title=d.name;
   const notesTag=d.notes?`<div style="margin-top:24px;padding:14px;border-left:3px solid rgba(95,122,108,0.5);font-size:11.5px;font-style:italic;color:#5F7A6C;line-height:1.75;font-family:'Jost',sans-serif;font-weight:300;">${d.notes}</div>`:'';

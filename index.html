@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Drinks Menu</title>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: #DDD0B8;
+  min-height: 100vh;
+  padding: 50px 24px;
+  font-family: 'Jost', sans-serif;
+}
+
+/* ---- PAGE ---- */
+.page {
+  max-width: 1000px;
+  margin: 0 auto;
+  background: #FBF4E8;
+  padding: 64px 90px 80px;
+  position: relative;
+  box-shadow: 0 8px 60px rgba(60,30,10,0.18);
+}
+
+/* Linen texture overlay */
+.page::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(160,120,60,0.03) 3px, rgba(160,120,60,0.03) 4px),
+    repeating-linear-gradient(90deg, transparent, transparent 3px, rgba(160,120,60,0.025) 3px, rgba(160,120,60,0.025) 4px);
+  pointer-events: none;
+}
+
+/* Inner border */
+.page::before {
+  content: '';
+  position: absolute;
+  inset: 22px;
+  border: 1.5px solid rgba(176,85,48,0.18);
+  border-radius: 1px;
+  pointer-events: none;
+}
+
+/* ---- HEADER ---- */
+.header {
+  text-align: center;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.header-botanical {
+  display: block;
+  width: 100%;
+  height: 80px;
+  margin-bottom: 4px;
+}
+
+.menu-title {
+  font-family: 'Dancing Script', cursive;
+  font-size: 72px;
+  font-weight: 700;
+  color: #9C4A28;
+  line-height: 1;
+  letter-spacing: 0.01em;
+}
+
+.header-eyebrow {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 15px;
+  color: #7A8A5C;
+  margin-top: 6px;
+  letter-spacing: 0.04em;
+}
+
+.header-tagline {
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  color: #B07040;
+  opacity: 0.7;
+  text-transform: uppercase;
+  margin-top: 8px;
+}
+
+.header-botanical-bottom {
+  display: block;
+  width: 100%;
+  height: 56px;
+  margin-top: 10px;
+}
+
+/* ---- SECTION ---- */
+.section-header {
+  text-align: center;
+  margin: 58px 0 42px;
+}
+
+.section-botanical {
+  display: block;
+  width: 100%;
+  height: 48px;
+  margin-bottom: 10px;
+}
+
+.section-eyebrow {
+  font-size: 9px;
+  letter-spacing: 0.42em;
+  color: #7A8A5C;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  opacity: 0.85;
+}
+
+.section-title {
+  font-family: 'Dancing Script', cursive;
+  font-size: 44px;
+  font-weight: 600;
+  color: #9C4A28;
+  line-height: 1;
+}
+
+/* ---- GRID ---- */
+.drinks-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px 65px;
+}
+
+/* ---- CARD ---- */
+.drink-card {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.drink-svg-wrap {
+  width: 108px;
+  height: 148px;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.drink-svg-wrap svg { max-width: 100%; max-height: 100%; }
+.coupe-wrap { width: 132px; height: 148px; }
+
+.drink-name {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 17px;
+  font-weight: 600;
+  color: #9C4A28;
+  margin-bottom: 9px;
+  line-height: 1.35;
+}
+
+.drink-divider {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 80px;
+  margin: 0 auto 9px;
+}
+.drink-divider::before,
+.drink-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #B07040;
+  opacity: 0.3;
+}
+.drink-divider-leaf {
+  font-size: 8px;
+  color: #7A8A5C;
+  opacity: 0.7;
+  line-height: 1;
+}
+
+.drink-ingredients {
+  font-size: 11.5px;
+  letter-spacing: 0.04em;
+  color: #6B4A30;
+  line-height: 2;
+  font-weight: 300;
+  opacity: 0.88;
+}
+
+.no-ice-note {
+  margin-top: 8px;
+  font-size: 9.5px;
+  letter-spacing: 0.12em;
+  color: #7A8A5C;
+  font-style: italic;
+  opacity: 0.8;
+}
+.no-ice-note::before { content: '\2745  '; font-style: normal; }
+
+/* ---- SPACER ---- */
+.page-break-spacer {
+  margin: 0 -90px;
+  height: 1px;
+  background: rgba(176,112,64,0.14);
+  margin-top: 68px;
+}
+
+@media print {
+  body { background: none; padding: 0; }
+  .page { box-shadow: none; padding: 50px 65px; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ===== HEADER ===== -->
+  <div class="header">
+
+    <svg class="header-botanical" viewBox="0 0 800 80" xmlns="http://www.w3.org/2000/svg">
+      <g opacity="0.72">
+        <!-- LEFT BRANCH -->
+        <path d="M380,60 C340,55 290,45 240,50 C200,54 160,48 120,52" stroke="#7A8A5C" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+        <ellipse cx="310" cy="44" rx="14" ry="7" fill="#8A9A6A" transform="rotate(-28,310,44)" opacity="0.8"/>
+        <ellipse cx="270" cy="40" rx="12" ry="6" fill="#6A8050" transform="rotate(-18,270,40)" opacity="0.75"/>
+        <ellipse cx="240" cy="43" rx="10" ry="5.5" fill="#7A9060" transform="rotate(-10,240,43)" opacity="0.8"/>
+        <ellipse cx="335" cy="50" rx="11" ry="5" fill="#8A9A6A" transform="rotate(20,335,50)" opacity="0.65"/>
+        <ellipse cx="210" cy="47" rx="9" ry="4.5" fill="#6A8050" transform="rotate(-5,210,47)" opacity="0.7"/>
+        <circle cx="160" cy="46" r="3.5" fill="#B85848" opacity="0.7"/>
+        <circle cx="153" cy="52" r="2.8" fill="#C87060" opacity="0.6"/>
+        <circle cx="168" cy="52" r="2.5" fill="#B85848" opacity="0.65"/>
+        <circle cx="130" cy="50" r="4" fill="#E8C890" opacity="0.6"/>
+        <circle cx="130" cy="50" r="2" fill="#D4A060" opacity="0.8"/>
+        <path d="M355,55 C345,42 330,35 320,38" stroke="#7A8A5C" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.6"/>
+        <ellipse cx="322" cy="36" rx="9" ry="4.5" fill="#8A9A6A" transform="rotate(-40,322,36)" opacity="0.6"/>
+        <!-- RIGHT BRANCH (mirror) -->
+        <path d="M420,60 C460,55 510,45 560,50 C600,54 640,48 680,52" stroke="#7A8A5C" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+        <ellipse cx="490" cy="44" rx="14" ry="7" fill="#8A9A6A" transform="rotate(28,490,44)" opacity="0.8"/>
+        <ellipse cx="530" cy="40" rx="12" ry="6" fill="#6A8050" transform="rotate(18,530,40)" opacity="0.75"/>
+        <ellipse cx="560" cy="43" rx="10" ry="5.5" fill="#7A9060" transform="rotate(10,560,43)" opacity="0.8"/>
+        <ellipse cx="465" cy="50" rx="11" ry="5" fill="#8A9A6A" transform="rotate(-20,465,50)" opacity="0.65"/>
+        <ellipse cx="590" cy="47" rx="9" ry="4.5" fill="#6A8050" transform="rotate(5,590,47)" opacity="0.7"/>
+        <circle cx="640" cy="46" r="3.5" fill="#B85848" opacity="0.7"/>
+        <circle cx="647" cy="52" r="2.8" fill="#C87060" opacity="0.6"/>
+        <circle cx="632" cy="52" r="2.5" fill="#B85848" opacity="0.65"/>
+        <circle cx="670" cy="50" r="4" fill="#E8C890" opacity="0.6"/>
+        <circle cx="670" cy="50" r="2" fill="#D4A060" opacity="0.8"/>
+        <path d="M445,55 C455,42 470,35 480,38" stroke="#7A8A5C" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.6"/>
+        <ellipse cx="478" cy="36" rx="9" ry="4.5" fill="#8A9A6A" transform="rotate(40,478,36)" opacity="0.6"/>
+        <!-- Centre sprig -->
+        <path d="M385,58 C390,48 398,44 400,46 C402,44 410,48 415,58" stroke="#7A8A5C" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.5"/>
+        <ellipse cx="400" cy="42" rx="6" ry="3.5" fill="#8A9A6A" opacity="0.55"/>
+      </g>
+    </svg>
+
+    <h1 class="menu-title">Drinks</h1>
+    <p class="header-eyebrow">Elena &amp; Dragana's Birthday Party</p>
+    <p class="header-tagline">curated for guests aged a few months to 30+ &nbsp;&middot;&nbsp; everyone's included &#x1F37B;</p>
+
+    <svg class="header-botanical-bottom" viewBox="0 0 800 56" xmlns="http://www.w3.org/2000/svg">
+      <g opacity="0.65">
+        <line x1="60" y1="28" x2="340" y2="28" stroke="#B07040" stroke-width="0.8" opacity="0.35"/>
+        <line x1="460" y1="28" x2="740" y2="28" stroke="#B07040" stroke-width="0.8" opacity="0.35"/>
+        <circle cx="400" cy="28" r="10" fill="none" stroke="#B07040" stroke-width="1" opacity="0.4"/>
+        <circle cx="400" cy="28" r="4" fill="#C09840" opacity="0.45"/>
+        <line x1="400" y1="14" x2="400" y2="42" stroke="#B07040" stroke-width="0.8" opacity="0.35"/>
+        <line x1="386" y1="28" x2="414" y2="28" stroke="#B07040" stroke-width="0.8" opacity="0.35"/>
+        <line x1="390" y1="18" x2="410" y2="38" stroke="#B07040" stroke-width="0.6" opacity="0.25"/>
+        <line x1="410" y1="18" x2="390" y2="38" stroke="#B07040" stroke-width="0.6" opacity="0.25"/>
+        <ellipse cx="350" cy="24" rx="10" ry="4.5" fill="#8A9A6A" transform="rotate(15,350,24)" opacity="0.55"/>
+        <ellipse cx="310" cy="26" rx="8" ry="4" fill="#6A8050" transform="rotate(8,310,26)" opacity="0.5"/>
+        <ellipse cx="450" cy="24" rx="10" ry="4.5" fill="#8A9A6A" transform="rotate(-15,450,24)" opacity="0.55"/>
+        <ellipse cx="490" cy="26" rx="8" ry="4" fill="#6A8050" transform="rotate(-8,490,26)" opacity="0.5"/>
+      </g>
+    </svg>
+  </div>
+
+  <!-- ===== MOCKTAILS ===== -->
+  <div class="section-header">
+    <svg class="section-botanical" viewBox="0 0 600 48" xmlns="http://www.w3.org/2000/svg">
+      <g opacity="0.6">
+        <line x1="40" y1="24" x2="230" y2="24" stroke="#B07040" stroke-width="0.8" opacity="0.3"/>
+        <line x1="370" y1="24" x2="560" y2="24" stroke="#B07040" stroke-width="0.8" opacity="0.3"/>
+        <ellipse cx="260" cy="20" rx="18" ry="7" fill="#8A9A6A" transform="rotate(-12,260,20)" opacity="0.6"/>
+        <ellipse cx="240" cy="28" rx="13" ry="5.5" fill="#6A8050" transform="rotate(8,240,28)" opacity="0.5"/>
+        <ellipse cx="340" cy="20" rx="18" ry="7" fill="#8A9A6A" transform="rotate(12,340,20)" opacity="0.6"/>
+        <ellipse cx="360" cy="28" rx="13" ry="5.5" fill="#6A8050" transform="rotate(-8,360,28)" opacity="0.5"/>
+        <circle cx="300" cy="24" r="5" fill="#E8C890" opacity="0.55"/>
+        <circle cx="300" cy="24" r="2.5" fill="#C09840" opacity="0.65"/>
+        <circle cx="285" cy="24" r="3" fill="#B85848" opacity="0.5"/>
+        <circle cx="315" cy="24" r="3" fill="#B85848" opacity="0.5"/>
+      </g>
+    </svg>
+    <p class="section-eyebrow">Non-Alcoholic</p>
+    <h2 class="section-title">Mocktails</h2>
+  </div>
+  <div class="drinks-grid" id="mocktails-grid"></div>
+
+  <div class="page-break-spacer"></div>
+
+  <!-- ===== COCKTAILS ===== -->
+  <div class="section-header">
+    <svg class="section-botanical" viewBox="0 0 600 48" xmlns="http://www.w3.org/2000/svg">
+      <g opacity="0.6">
+        <line x1="40" y1="24" x2="220" y2="24" stroke="#B07040" stroke-width="0.8" opacity="0.3"/>
+        <line x1="380" y1="24" x2="560" y2="24" stroke="#B07040" stroke-width="0.8" opacity="0.3"/>
+        <ellipse cx="250" cy="18" rx="20" ry="8" fill="#8A9A6A" transform="rotate(-15,250,18)" opacity="0.6"/>
+        <ellipse cx="232" cy="29" rx="14" ry="6" fill="#6A8050" transform="rotate(10,232,29)" opacity="0.5"/>
+        <ellipse cx="350" cy="18" rx="20" ry="8" fill="#8A9A6A" transform="rotate(15,350,18)" opacity="0.6"/>
+        <ellipse cx="368" cy="29" rx="14" ry="6" fill="#6A8050" transform="rotate(-10,368,29)" opacity="0.5"/>
+        <circle cx="300" cy="24" r="6" fill="#E8C890" opacity="0.55"/>
+        <circle cx="300" cy="24" r="3" fill="#C09840" opacity="0.65"/>
+        <circle cx="283" cy="26" r="3.5" fill="#B85848" opacity="0.5"/>
+        <circle cx="317" cy="26" r="3.5" fill="#B85848" opacity="0.5"/>
+        <path d="M295,18 C300,12 305,18" stroke="#8A9A6A" stroke-width="1" fill="none" opacity="0.5"/>
+        <ellipse cx="300" cy="11" rx="5" ry="3" fill="#8A9A6A" opacity="0.45"/>
+      </g>
+    </svg>
+    <p class="section-eyebrow">With Spirits</p>
+    <h2 class="section-title">Cocktails</h2>
+  </div>
+  <div class="drinks-grid" id="cocktails-grid"></div>
+
+</div>
+
+<script>
+const drinks = {
+  mocktails: [
+    {
+      name: "Cranberry Watermelon Mint Cooler",
+      ingredients: ["Cranberry Juice", "Watermelon Syrup", "Lemon Juice", "Fresh Mint", "Sparkling Water"],
+      glass: "highball", liq: "#C04060", liq2: "#E07090", bg: "#C04060",
+      garnish: "mint", straw: true, gradient: false
+    },
+    {
+      name: "Citrus Mango Sunrise",
+      ingredients: ["Orange Juice", "Lemon Juice", "Mango Syrup"],
+      glass: "highball", liq: "#E07030", liq2: "#C04060", bg: "#E07030",
+      garnish: "orange", straw: true, gradient: true, noIce: true
+    },
+    {
+      name: "Shirley Temple",
+      ingredients: ["Ginger Beer", "Orange Juice", "Cranberry Juice"],
+      glass: "highball", liq: "#CC6080", liq2: "#E89030", bg: "#CC6080",
+      garnish: "orange", straw: true, gradient: true
+    },
+    {
+      name: "Mango Lemonade",
+      ingredients: ["Mango Syrup", "Lemon Juice", "Sparkling Water"],
+      glass: "highball", liq: "#D8A020", liq2: "#F0D070", bg: "#D8A020",
+      garnish: "lemon", straw: true, gradient: false
+    },
+    {
+      name: "Watermelon Mint Lemonade",
+      ingredients: ["Watermelon Syrup", "Lemon Juice", "Fresh Mint", "Sparkling Water"],
+      glass: "highball", liq: "#D85878", liq2: "#F09090", bg: "#D85878",
+      garnish: "mint", straw: true, gradient: false
+    },
+    {
+      name: "Tropical Sunset",
+      ingredients: ["Mango Syrup", "Orange Juice", "Lemon Juice", "Sparkling Water", "Cranberry Juice"],
+      glass: "highball", liq: "#E07828", liq2: "#C03050", bg: "#E07828",
+      garnish: "orange", straw: true, gradient: true
+    },
+  ],
+  cocktails: [
+    {
+      name: "Watermelon Breeze",
+      ingredients: ["Vodka", "Watermelon Syrup", "Cranberry Juice", "Lemon Juice", "Sparkling Water"],
+      glass: "highball", liq: "#C8385C", liq2: "#E87090", bg: "#C8385C",
+      garnish: "lemon", straw: true, gradient: false
+    },
+    {
+      name: "Mango Mule",
+      ingredients: ["Vodka", "Mango Syrup", "Lemon Juice", "Ginger Beer"],
+      glass: "highball", liq: "#D08020", liq2: "#F0C058", bg: "#C07020",
+      garnish: "mint", straw: true, gradient: false
+    },
+    {
+      name: "Moscow Mule",
+      ingredients: ["Vodka", "Lemon Juice", "Ginger Beer"],
+      glass: "highball", liq: "#B8A040", liq2: "#E0D080", bg: "#A88030",
+      garnish: "mint", straw: true, gradient: false
+    },
+    {
+      name: "Cape Codder",
+      ingredients: ["Vodka", "Cranberry Juice", "Lemon Juice"],
+      glass: "highball", liq: "#A02848", liq2: "#C06080", bg: "#A02848",
+      garnish: "lemon", straw: true, gradient: false
+    },
+    {
+      name: "Sea Breeze",
+      ingredients: ["Vodka", "Cranberry Juice", "Orange Juice"],
+      glass: "highball", liq: "#D05840", liq2: "#B82848", bg: "#D05840",
+      garnish: "orange", straw: true, gradient: true, noIce: true
+    },
+    {
+      name: "Watermelon Vodka Smash",
+      ingredients: ["Vodka", "Watermelon Syrup", "Lemon Juice", "Fresh Mint"],
+      glass: "highball", liq: "#C84870", liq2: "#E890A8", bg: "#C84870",
+      garnish: "mint", straw: true, gradient: false
+    },
+  ]
+};
+
+let _uid = 0;
+function uid() { return 'g' + (++_uid); }
+function hexRgb(hex) {
+  return { r: parseInt(hex.slice(1,3),16), g: parseInt(hex.slice(3,5),16), b: parseInt(hex.slice(5,7),16) };
+}
+function rgb(c, a) {
+  return a !== undefined ? `rgba(${c.r},${c.g},${c.b},${a})` : `rgb(${c.r},${c.g},${c.b})`;
+}
+
+function mintGarnish(x, y, rot) {
+  return `<g transform="translate(${x},${y}) rotate(${rot})">
+    <path d="M0,0 C-4,-7 -9,-11 -7,-18" stroke="#4A8035" stroke-width="1.5" fill="none"/>
+    <ellipse cx="-9" cy="-20" rx="5.5" ry="3.5" fill="#6EA850" transform="rotate(20,-9,-20)"/>
+    <ellipse cx="-3" cy="-12" rx="5" ry="3" fill="#80BC60" transform="rotate(-15,-3,-12)"/>
+    <ellipse cx="2" cy="-5" rx="4" ry="2.8" fill="#6EA850" transform="rotate(10,2,-5)"/>
+  </g>`;
+}
+function lemonGarnish(x, y, rot) {
+  return `<g transform="translate(${x},${y}) rotate(${rot})">
+    <ellipse cx="0" cy="0" rx="12" ry="8" fill="#F0D038" stroke="#C8A818" stroke-width="1"/>
+    <path d="M-12,0 L12,0" stroke="#C8A818" stroke-width="0.5"/>
+    <path d="M0,-8 Q3.5,-4 0,8 Q-3.5,-4 0,-8" fill="rgba(255,255,255,0.2)"/>
+  </g>`;
+}
+function orangeGarnish(x, y, rot) {
+  return `<g transform="translate(${x},${y}) rotate(${rot})">
+    <ellipse cx="0" cy="0" rx="13" ry="9" fill="#F07828" stroke="#C85818" stroke-width="1"/>
+    <path d="M-13,0 L13,0" stroke="#C85818" stroke-width="0.5"/>
+    <path d="M0,-9 Q4,-4.5 0,9 Q-4,-4.5 0,-9" fill="rgba(255,255,255,0.2)"/>
+    <path d="M-6.5,-6.5 L6.5,6.5 M6.5,-6.5 L-6.5,6.5" stroke="#C85818" stroke-width="0.4" opacity="0.5"/>
+  </g>`;
+}
+function garnishSVG(type, x, y, rot) {
+  if (type === 'mint')   return mintGarnish(x, y, rot);
+  if (type === 'lemon')  return lemonGarnish(x, y, rot);
+  if (type === 'orange') return orangeGarnish(x, y, rot);
+  return '';
+}
+function iceCubes(config) {
+  return config.map(({x,y,w,h}) =>
+    `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="2.5"
+      fill="rgba(255,255,255,0.58)" stroke="rgba(255,255,255,0.82)" stroke-width="0.8"/>`
+  ).join('');
+}
+
+function drawHighball(d) {
+  const id = uid(), c = hexRgb(d.liq), c2 = hexRgb(d.liq2), bg = hexRgb(d.bg);
+  const liquidFill = d.gradient ? `url(#lg_${id})` : rgb(c, 0.52);
+  const gradDef = d.gradient
+    ? `<linearGradient id="lg_${id}" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="${rgb(c2)}" stop-opacity="0.55"/>
+        <stop offset="100%" stop-color="${rgb(c)}" stop-opacity="0.65"/>
+       </linearGradient>` : '';
+  const straw = d.straw
+    ? `<line x1="78" y1="18" x2="70" y2="158" stroke="${rgb(c)}" stroke-width="3.5" stroke-linecap="round" opacity="0.75"/>
+       <line x1="78" y1="18" x2="70" y2="158" stroke="white" stroke-width="1.2" stroke-dasharray="9,9" stroke-dashoffset="4" opacity="0.65"/>` : '';
+  let gx = 87, gy = 24, gr = -15;
+  if (d.garnish === 'mint') { gx = 80; gy = 16; gr = -18; }
+  return `<svg viewBox="0 0 118 170" xmlns="http://www.w3.org/2000/svg">
+  <defs><filter id="bl_${id}"><feGaussianBlur stdDeviation="13"/></filter>${gradDef}</defs>
+  <ellipse cx="57" cy="100" rx="52" ry="65" fill="${rgb(bg)}" opacity="0.09" filter="url(#bl_${id})"/>
+  <path d="M24,22 L94,22 L86,158 L32,158 Z" fill="rgba(255,255,255,0.26)" stroke="${rgb(c)}" stroke-opacity="0.42" stroke-width="1.5"/>
+  <path d="M26,66 L92,66 L86,158 L32,158 Z" fill="${liquidFill}"/>
+  <path d="M26,66 Q59,61 92,66" stroke="rgba(255,255,255,0.52)" stroke-width="1" fill="none"/>
+  <path d="M30,30 L33,154" stroke="rgba(255,255,255,0.30)" stroke-width="3" stroke-linecap="round"/>
+  <path d="M37,30 L39,90" stroke="rgba(255,255,255,0.16)" stroke-width="2" stroke-linecap="round"/>
+  ${iceCubes([{x:36,y:74,w:22,h:18},{x:61,y:79,w:18,h:15},{x:36,y:97,w:18,h:14}])}
+  ${straw}
+  <line x1="24" y1="22" x2="94" y2="22" stroke="${rgb(c)}" stroke-opacity="0.48" stroke-width="1.5" stroke-linecap="round"/>
+  ${garnishSVG(d.garnish, gx, gy, gr)}
+</svg>`;
+}
+
+function renderDrink(d) {
+  const svg = drawHighball(d);
+  const ingredients = d.ingredients.join('<br>');
+  const noIceTag = d.noIce ? '<div class="no-ice-note">also available without ice</div>' : '';
+  return `<div class="drink-card">
+    <div class="drink-svg-wrap">${svg}</div>
+    <div class="drink-name">${d.name}</div>
+    <div class="drink-divider"><span class="drink-divider-leaf">✦</span></div>
+    <div class="drink-ingredients">${ingredients}</div>
+    ${noIceTag}
+  </div>`;
+}
+
+document.getElementById('mocktails-grid').innerHTML = drinks.mocktails.map(renderDrink).join('');
+document.getElementById('cocktails-grid').innerHTML = drinks.cocktails.map(renderDrink).join('');
+</script>
+</body>
+</html>

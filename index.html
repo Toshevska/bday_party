@@ -6,81 +6,107 @@
 <title>Drinks Menu</title>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Jost:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { background: transparent; font-family: 'Jost', sans-serif; color: #3A3A3A; padding: 52px 28px 72px; }
-.page { max-width: 960px; margin: 0 auto; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:transparent; font-family:'Jost',sans-serif; color:#3A3A3A; padding:52px 28px 72px; }
+.page { max-width:960px; margin:0 auto; }
 
 /* HEADER */
-.page-header { text-align: center; margin-bottom: 44px; padding-bottom: 32px; border-bottom: 1.5px solid rgba(143,175,155,0.4); }
-.header-party { font-size: 9.5px; letter-spacing: 0.38em; text-transform: uppercase; color: #8FAF9B; font-weight: 500; margin-bottom: 8px; }
-.page-title { font-family: 'Oswald', sans-serif; font-size: 66px; font-weight: 700; color: #5F7A6C; text-transform: uppercase; letter-spacing: 0.10em; line-height: 1; margin-bottom: 10px; }
-.header-tagline { font-size: 11.5px; color: #7E9E8C; font-style: italic; font-weight: 300; letter-spacing: 0.04em; }
+.page-header {
+  text-align:center; margin-bottom:44px; padding-bottom:32px;
+  border-bottom:1.5px solid rgba(143,175,155,0.4);
+  position:relative;
+}
+.header-party { font-size:9.5px; letter-spacing:0.38em; text-transform:uppercase; color:#8FAF9B; font-weight:500; margin-bottom:8px; }
+.page-title { font-family:'Oswald',sans-serif; font-size:66px; font-weight:700; color:#5F7A6C; text-transform:uppercase; letter-spacing:0.10em; line-height:1; margin-bottom:10px; }
+.header-tagline { font-size:11.5px; color:#7E9E8C; font-style:italic; font-weight:300; letter-spacing:0.04em; }
 
-/* BIRTHDAY STORM HERO */
-.signature-wrap { border: 1.5px solid #D4B46A; padding: 36px 40px; margin-bottom: 52px; position: relative; background: transparent; }
-.signature-wrap::before { content: '✦  Our Signature Cocktail  ✦'; position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: #F2EDE4; padding: 0 14px; font-size: 9px; letter-spacing: 0.28em; text-transform: uppercase; color: #D4B46A; font-weight: 600; white-space: nowrap; font-family: 'Jost', sans-serif; }
-.signature-inner { display: flex; gap: 36px; align-items: center; }
-.signature-glass { width: 140px; height: 200px; flex-shrink: 0; }
-.signature-glass svg { width: 100%; height: 100%; }
-.signature-text { flex: 1; }
-.signature-name { font-family: 'Oswald', sans-serif; font-size: 36px; font-weight: 700; color: #5F7A6C; text-transform: uppercase; letter-spacing: 0.07em; line-height: 1.1; margin-bottom: 10px; }
-.signature-desc { font-size: 12.5px; font-style: italic; font-weight: 300; color: #5F7A6C; line-height: 1.75; margin-bottom: 16px; border-left: 2px solid #D4B46A; padding-left: 12px; }
-.signature-ingredients-label { font-size: 8.5px; letter-spacing: 0.34em; text-transform: uppercase; color: #D4B46A; font-weight: 600; margin-bottom: 8px; }
-.signature-ingredients { list-style: none; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 2px 20px; }
-.signature-ingredients li { font-size: 11.5px; font-weight: 300; color: #3A3A3A; line-height: 1.7; }
-.signature-ingredients li::before { content: '—  '; color: #D4B46A; font-weight: 500; }
-.signature-mocktail { margin-top: 12px; font-size: 10.5px; font-style: italic; color: #8FAF9B; font-weight: 300; }
-.signature-mocktail::before { content: '🌿  '; }
-
-/* SECTION */
-.section-divider { display: flex; align-items: center; gap: 16px; margin: 44px 0 26px; }
-.section-divider::before, .section-divider::after { content: ''; flex: 1; height: 1px; background: rgba(143,175,155,0.4); }
-.section-divider span { font-family: 'Oswald', sans-serif; font-size: 10.5px; font-weight: 600; letter-spacing: 0.34em; text-transform: uppercase; color: #7E9E8C; white-space: nowrap; }
-
-/* GRID */
-.drinks-grid { display: grid; grid-template-columns: 1fr 1fr; column-gap: 48px; row-gap: 0; }
-
-/* CARD */
-.drink-card { display: flex; flex-direction: row; align-items: center; gap: 18px; padding: 20px 0; border-bottom: 1px solid rgba(143,175,155,0.25); cursor: pointer; text-decoration: none; color: inherit; transition: opacity 0.18s ease; }
-.drink-card:hover { opacity: 0.68; }
-.drink-svg-wrap { width: 120px; height: 165px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
-.drink-svg-wrap svg { max-width: 100%; max-height: 100%; }
-.drink-text { flex: 1; min-width: 0; }
-.drink-name { font-family: 'Oswald', sans-serif; font-size: 14.5px; font-weight: 700; color: #5F7A6C; text-transform: uppercase; letter-spacing: 0.05em; line-height: 1.25; margin-bottom: 9px; }
-.drink-ingredients { list-style: none; padding: 0; font-size: 11.5px; font-weight: 300; color: #4A4A4A; line-height: 1.95; }
-.drink-ingredients li::before { content: '–  '; color: #8FAF9B; }
-.no-ice-note { margin-top: 7px; font-size: 9.5px; color: #8FAF9B; font-style: italic; font-weight: 400; }
-.no-ice-note::before { content: '❅  '; font-style: normal; }
-
-/* Pigeon in header */
+/* Pigeon — desktop: absolute top-right */
 .header-pigeon { position:absolute; right:0; top:-20px; width:130px; opacity:0.88; }
 .header-pigeon svg { width:100%; height:auto; }
-.page-header { position:relative; }
 
-/* Signature dual version */
-.sig-versions { display:grid; grid-template-columns:1fr 1px 1fr; gap:0 18px; margin:14px 0 14px; }
+/* SIGNATURE HERO */
+.signature-wrap {
+  border:1.5px solid #D4B46A; padding:36px 40px; margin-bottom:52px;
+  position:relative; background:transparent; cursor:pointer;
+  text-decoration:none; color:inherit; display:block;
+  transition:opacity 0.18s;
+}
+.signature-wrap:hover { opacity:0.82; }
+.signature-wrap::before {
+  content:'✦  Our Signature Cocktail  ✦';
+  position:absolute; top:-10px; left:50%; transform:translateX(-50%);
+  background:#F2EDE4; padding:0 14px;
+  font-size:9px; letter-spacing:0.28em; text-transform:uppercase;
+  color:#D4B46A; font-weight:600; white-space:nowrap; font-family:'Jost',sans-serif;
+}
+.signature-inner { display:flex; gap:36px; align-items:center; }
+.signature-glass { width:140px; height:200px; flex-shrink:0; }
+.signature-glass svg { width:100%; height:100%; }
+.signature-text { flex:1; }
+.signature-name { font-family:'Oswald',sans-serif; font-size:36px; font-weight:700; color:#5F7A6C; text-transform:uppercase; letter-spacing:0.07em; line-height:1.1; margin-bottom:14px; }
+.sig-versions { display:grid; grid-template-columns:1fr 1px 1fr; gap:0 18px; margin:0 0 12px; }
 .sig-version-sep { background:rgba(212,180,106,0.30); }
-.sig-version-label {
-  font-size:8.5px; letter-spacing:0.30em; text-transform:uppercase;
-  color:#D4B46A; font-weight:600; margin-bottom:9px;
-  font-family:'Jost',sans-serif;
+.sig-version-label { font-size:8.5px; letter-spacing:0.30em; text-transform:uppercase; color:#D4B46A; font-weight:600; margin-bottom:9px; font-family:'Jost',sans-serif; }
+.signature-ingredients { list-style:none; padding:0; font-size:11.5px; font-weight:300; color:#3A3A3A; line-height:1.7; }
+.signature-ingredients li::before { content:'—  '; color:#D4B46A; font-weight:500; }
+.signature-mocktail { font-size:10.5px; color:#8FAF9B; font-style:italic; font-weight:300; }
+.signature-mocktail::before { content:'🌿  '; }
+
+/* SECTION */
+.section-divider { display:flex; align-items:center; gap:16px; margin:44px 0 26px; }
+.section-divider::before,.section-divider::after { content:''; flex:1; height:1px; background:rgba(143,175,155,0.4); }
+.section-divider span { font-family:'Oswald',sans-serif; font-size:10.5px; font-weight:600; letter-spacing:0.34em; text-transform:uppercase; color:#7E9E8C; white-space:nowrap; }
+
+/* GRID */
+.drinks-grid { display:grid; grid-template-columns:1fr 1fr; column-gap:48px; row-gap:0; }
+
+/* CARD */
+.drink-card { display:flex; flex-direction:row; align-items:center; gap:18px; padding:20px 0; border-bottom:1px solid rgba(143,175,155,0.25); cursor:pointer; text-decoration:none; color:inherit; transition:opacity 0.18s; }
+.drink-card:hover { opacity:0.68; }
+.drink-svg-wrap { width:120px; height:165px; flex-shrink:0; display:flex; align-items:center; justify-content:center; }
+.drink-svg-wrap svg { max-width:100%; max-height:100%; }
+.drink-text { flex:1; min-width:0; }
+.drink-name { font-family:'Oswald',sans-serif; font-size:14.5px; font-weight:700; color:#5F7A6C; text-transform:uppercase; letter-spacing:0.05em; line-height:1.25; margin-bottom:9px; }
+.drink-ingredients { list-style:none; padding:0; font-size:11.5px; font-weight:300; color:#4A4A4A; line-height:1.95; }
+.drink-ingredients li::before { content:'–  '; color:#8FAF9B; }
+.no-ice-note { margin-top:7px; font-size:9.5px; color:#8FAF9B; font-style:italic; font-weight:400; }
+.no-ice-note::before { content:'❅  '; font-style:normal; }
+.footer-note { text-align:center; margin-top:48px; font-size:9.5px; letter-spacing:0.18em; text-transform:uppercase; color:#8FAF9B; opacity:0.7; }
+
+/* ---- MOBILE ---- */
+@media (max-width:640px) {
+  body { padding:28px 16px 52px; }
+  .page-title { font-size:44px; }
+
+  /* Pigeon: hide on small screens to avoid overlap */
+  .header-pigeon { display:none; }
+
+  .drinks-grid { grid-template-columns:1fr; }
+  .drink-svg-wrap { width:96px; height:132px; }
+  .drink-name { font-size:13px; }
+  .drink-ingredients { font-size:11px; }
+
+  .signature-wrap { padding:28px 20px; margin-bottom:36px; }
+  .signature-inner { flex-direction:column; align-items:center; gap:16px; }
+  .signature-glass { width:110px; height:157px; }
+  .signature-name { font-size:26px; text-align:center; }
+  .sig-versions { grid-template-columns:1fr; gap:16px 0; }
+  .sig-version-sep { display:none; }
+  .signature-mocktail { text-align:center; }
+
+  .section-divider { margin:32px 0 18px; }
 }
 
-.footer-note { text-align: center; margin-top: 48px; font-size: 9.5px; letter-spacing: 0.18em; text-transform: uppercase; color: #8FAF9B; opacity: 0.7; }
-
-/* MOBILE */
-@media (max-width: 640px) {
-  body { padding: 28px 16px 52px; }
-  .page-title { font-size: 44px; }
-  .drinks-grid { grid-template-columns: 1fr; }
-  .drink-svg-wrap { width: 96px; height: 132px; }
-  .signature-wrap { padding: 28px 20px; }
-  .signature-inner { flex-direction: column; gap: 20px; }
-  .signature-glass { width: 110px; height: 157px; }
-  .signature-name { font-size: 28px; }
-  .signature-ingredients { grid-template-columns: 1fr; }
+/* Show pigeon below title on medium screens instead of overlapping */
+@media (min-width:641px) and (max-width:800px) {
+  .header-pigeon { width:90px; top:-10px; }
 }
-@media print { body { padding: 20px; } .drink-card { break-inside: avoid; } .signature-wrap::before { background: white; } }
+
+@media print {
+  body { padding:20px; }
+  .drink-card { break-inside:avoid; }
+  .signature-wrap::before { background:white; }
+}
 </style>
 </head>
 <body>
@@ -107,17 +133,14 @@ body { background: transparent; font-family: 'Jost', sans-serif; color: #3A3A3A;
 </svg>
 
 <div class="page">
-
   <div class="page-header">
-  <div class="header-pigeon" id="header-pigeon-wrap"></div>
+    <div class="header-pigeon" id="header-pigeon-wrap"></div>
     <p class="header-party">Elena &amp; Dragana's Birthday Party</p>
     <h1 class="page-title">Drinks</h1>
     <p class="header-tagline">From baby bumps to seasoned sippers — everyone's covered</p>
   </div>
 
-  <!-- BIRTHDAY STORM HERO -->
-  <div class="signature-wrap">
-    <a href="recipe.html?drink=hugo-pigeon" style="text-decoration:none;color:inherit;display:block;transition:opacity 0.18s;" onmouseover="this.style.opacity='0.75'" onmouseout="this.style.opacity='1'">
+  <a class="signature-wrap" href="recipe.html?drink=hugo-pigeon">
     <div class="signature-inner">
       <div class="signature-glass" id="gs-glass"></div>
       <div class="signature-text">
@@ -144,11 +167,10 @@ body { background: transparent; font-family: 'Jost', sans-serif; color: #3A3A3A;
             </ul>
           </div>
         </div>
-        <p class="signature-mocktail">Tap card for full recipe &amp; instructions</p>
+        <p class="signature-mocktail">Tap for full recipe &amp; instructions</p>
       </div>
     </div>
-    </a>
-  </div>
+  </a>
 
   <div class="section-divider"><span>Mocktails</span></div>
   <div class="drinks-grid" id="mocktails-grid"></div>
@@ -160,6 +182,8 @@ body { background: transparent; font-family: 'Jost', sans-serif; color: #3A3A3A;
 </div>
 
 <script>
+
+
 /* ============================================================
    DRINK DATA
    ============================================================ */
@@ -584,6 +608,12 @@ document.getElementById('header-pigeon-wrap').innerHTML = `<svg viewBox="0 0 210
 
 document.getElementById('mocktails-grid').innerHTML = drinks.mocktails.map(renderDrink).join('');
 document.getElementById('cocktails-grid').innerHTML = drinks.cocktails.map(renderDrink).join('');
+
+
+// Also render footer pigeon and header pigeon
+document.getElementById('footer-pigeon').innerHTML =
+  document.getElementById('header-pigeon-wrap').innerHTML;
+
 </script>
 </body>
 </html>
